@@ -62,37 +62,6 @@ form {
   margin-top: 24px;
 }
 
-.loader {
-  display: inline-block;
-  transform: translateZ(1px);
-}
-.loader:after {
-  content: '';
-  display: inline-block;
-  width: 48px;
-  height: 48px;
-  margin: 8px;
-  border-radius: 50%;
-  background: #fff;
-  animation: coin-flip 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-}
-@keyframes coin-flip {
-  0%,
-  100% {
-    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
-  }
-  0% {
-    transform: rotateY(0deg);
-  }
-  50% {
-    transform: rotateY(1800deg);
-    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
-  }
-  100% {
-    transform: rotateY(3600deg);
-  }
-}
-
 .gallery {
   padding: 0;
   display: flex;
@@ -138,4 +107,45 @@ form {
   line-height: 200%;
   letter-spacing: 0.04em;
   color: #2e2f42;
+}
+
+.loader {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+}
+
+.loader:before,
+.loader:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 24px;
+  height: 48px;
+  background: #ff3d00;
+  border-radius: 0 24px 24px 0;
+  transform-origin: 0 0;
+  animation: flip 2s linear infinite alternate;
+}
+.loader:after {
+  left: 0;
+  border-radius: 24px 0 0 24px;
+  transform-origin: 100% 0;
+  animation-delay: 1s;
+}
+
+@keyframes flip {
+  0%,
+  10% {
+    transform: rotateY(0deg);
+  }
+  90%,
+  100% {
+    transform: rotateY(-180deg);
+  }
 }
